@@ -1,0 +1,4 @@
+/home/moa/projects/c++/eventcam/build/CMakeFiles/eventCam.dir
+/home/moa/projects/c++/eventcam/build/CMakeFiles/edit_cache.dir
+/home/moa/projects/c++/eventcam/build/CMakeFiles/rebuild_cache.dir
+/home/moa/projects/c++/eventcam/build/CMakeFiles/eventCam_autogen.dir
