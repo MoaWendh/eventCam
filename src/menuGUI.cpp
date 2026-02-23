@@ -324,12 +324,7 @@ void launchMenuGUI(int argc, char *argv[]) {
     
     // ************* Conecta botão "Ler Biases" **************************
     QObject::connect(btnRdBias, &QPushButton::clicked, [&]() {
-
-    });
-
-
-    // ************** Conecta botão para escrita dos Biases na cãmera **********************
-        QObject::connect(btnSaveBias, &QPushButton::clicked, [&]() {        
+            // Variavel struct de ponteiros para os campos de biases (apenas leitura) da interface GUI:
         BiasFields_RD campos_bias_RD = {
             editBiasDiffRead,
             editBiasDiff_ONRead,
@@ -338,6 +333,7 @@ void launchMenuGUI(int argc, char *argv[]) {
             editBias_HPFRead,
             editBias_REFRRead
         }; 
+        
         // Variavel struct de ponteiros para os campos de escrita dos Biases da interface GUI:   
         BiasFields_WR campos_bias_WR = {
             editBiasDiff_ON_WR,
@@ -345,18 +341,40 @@ void launchMenuGUI(int argc, char *argv[]) {
             editBias_FO_WR,
             editBias_HPF_WR
         }; 
-    
-        // Chama a função que escreve os valores dos biases em arquivo .json
-        salvar_biases_em_json(campos_bias_RD, campos_bias_WR);
+        ler_biases(campos_bias_RD, campos_bias_WR);
+
+    });
+
+
+    // ************** Conecta botão para escrita dos Biases na cãmera **********************
+    QObject::connect(btnSaveBias, &QPushButton::clicked, [&]() {        
+    BiasFields_RD campos_bias_RD = {
+        editBiasDiffRead,
+        editBiasDiff_ONRead,
+        editBiasDiff_OFFRead,
+        editBias_FORead,
+        editBias_HPFRead,
+        editBias_REFRRead
+    }; 
+    // Variavel struct de ponteiros para os campos de escrita dos Biases da interface GUI:   
+    BiasFields_WR campos_bias_WR = {
+        editBiasDiff_ON_WR,
+        editBiasDiff_OFF_WR,
+        editBias_FO_WR,
+        editBias_HPF_WR
+    }; 
+
+    // Chama a função que escreve os valores dos biases em arquivo .json
+    salvar_biases_em_json(campos_bias_RD, campos_bias_WR);
     });
 
 
 
     // ************** Conecta botão ao evento de saída do aplicativo**********************
-        QObject::connect(btnSair, &QPushButton::clicked, [&]() {
-        std::cout << "Botão 'Sair' pressionado." << std::endl << "Aplicação finalizada..." << std::endl;
-        app.quit();
-        
+    QObject::connect(btnSair, &QPushButton::clicked, [&]() {
+    std::cout << "Botão 'Sair' pressionado." << std::endl << "Aplicação finalizada..." << std::endl;
+    app.quit();
+    
     });
 
 
